@@ -117,7 +117,7 @@
 					<div>
 						<Label for="price-input" class="block mb-2 text-sm font-medium">Original Price</Label>
 						<div class="relative group">
-							<span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-base font-medium group-focus-within:text-primary">
+							<span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-base font-medium group-focus-within:text-primary numeric">
 								€
 							</span>
 						<Input
@@ -131,7 +131,7 @@
 							value={price || ''}
 							oninput={onPriceChange}
 							onkeydown={preventNonNumeric}
-							class="pl-8 h-12 tabular-nums text-lg font-medium border-input focus-visible:ring-primary"
+							class="pl-8 h-12 numeric text-lg font-medium border-input focus-visible:ring-primary"
 						/>
 						</div>
 					</div>
@@ -155,9 +155,9 @@
 								value={discountPercent || ''}
 								oninput={onDiscountChange}
 								onkeydown={preventNonNumericInteger}
-								class="pr-8 h-12 tabular-nums text-lg font-medium border-input focus-visible:ring-primary"
+								class="pr-8 h-12 numeric text-lg font-medium border-input focus-visible:ring-primary"
 							/>
-								<span class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-base font-medium group-focus-within:text-primary">
+								<span class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-base font-medium group-focus-within:text-primary numeric">
 									%
 								</span>
 							</div>
@@ -180,8 +180,8 @@
 								<Button
 									variant={discountPercent === preset ? "default" : "outline"}
 									size="sm"
-									class={cn(
-										"text-base py-4",
+								class={cn(
+									"text-base py-4 numeric",
 										discountPercent === preset ? "scale-105 font-bold" : "hover:border-primary/50"
 									)}
 									onclick={() => setDiscount(preset)}
@@ -207,7 +207,7 @@
 								</p>
 						<div class="flex items-center justify-center gap-1 min-h-12 sm:min-h-14 px-2">
 							<span class={cn(
-								"text-3xl font-bold tracking-tight tabular-nums break-all text-center",
+								"text-3xl font-bold tracking-tight numeric break-all text-center",
 								hasInput ? "text-primary" : "text-muted-foreground/30"
 							)}>
 								{formatCurrency(discountedPrice)}
@@ -224,7 +224,7 @@
 										You Save
 									</p>
 									<p class={cn(
-										"text-lg font-bold tabular-nums",
+										"text-lg font-bold numeric",
 										hasInput ? "text-green-600 dark:text-green-400" : "text-muted-foreground/30"
 									)}>
 										{formatCurrency(savedAmount)}
@@ -235,7 +235,7 @@
 										Off
 									</p>
 									<p class={cn(
-										"text-lg font-bold tabular-nums",
+										"text-lg font-bold numeric",
 										hasInput ? "text-foreground" : "text-muted-foreground/30"
 									)}>
 										{discountPercent.toFixed(0)}%
