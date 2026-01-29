@@ -120,18 +120,19 @@
 							<span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-base font-medium group-focus-within:text-primary">
 								€
 							</span>
-							<Input
-								id="price-input"
-								type="number"
-								min="0"
-								max="999999999999"
-								step="0.01"
-								placeholder="0.00"
-								value={price || ''}
-								oninput={onPriceChange}
-								onkeydown={preventNonNumeric}
-								class="pl-8 h-12 tabular-nums text-lg font-medium border-input focus-visible:ring-primary"
-							/>
+						<Input
+							id="price-input"
+							type="number"
+							inputmode="decimal"
+							min="0"
+							max="999999999999"
+							step="0.01"
+							placeholder="0.00"
+							value={price || ''}
+							oninput={onPriceChange}
+							onkeydown={preventNonNumeric}
+							class="pl-8 h-12 tabular-nums text-lg font-medium border-input focus-visible:ring-primary"
+						/>
 						</div>
 					</div>
 
@@ -143,18 +144,19 @@
 						
 						<div class="space-y-4">
 							<div class="relative group">
-								<Input
-									id="discount-input"
-									type="number"
-									min="0"
-									max="100"
-									step="1"
-									placeholder="0"
-									value={discountPercent || ''}
-									oninput={onDiscountChange}
-									onkeydown={preventNonNumericInteger}
-									class="pr-8 h-12 tabular-nums text-lg font-medium border-input focus-visible:ring-primary"
-								/>
+							<Input
+								id="discount-input"
+								type="number"
+								inputmode="numeric"
+								min="0"
+								max="100"
+								step="1"
+								placeholder="0"
+								value={discountPercent || ''}
+								oninput={onDiscountChange}
+								onkeydown={preventNonNumericInteger}
+								class="pr-8 h-12 tabular-nums text-lg font-medium border-input focus-visible:ring-primary"
+							/>
 								<span class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-base font-medium group-focus-within:text-primary">
 									%
 								</span>
