@@ -1,14 +1,12 @@
 <script lang="ts">
 	import Card from '$lib/components/ui/card.svelte';
 	import CardContent from '$lib/components/ui/card-content.svelte';
-	import Button from '$lib/components/ui/button.svelte';
 	import Input from '$lib/components/ui/input.svelte';
 	import Label from '$lib/components/ui/label.svelte';
 
 	// State management using Svelte 5 runes
 	let price = $state(0);
 	let discountPercent = $state(0);
-	let activeButton = $state<number | null>(null);
 
 	// Derived values (auto-calculated)
 	let discountedPrice = $derived(price - (price * discountPercent) / 100);
@@ -25,12 +23,6 @@
 		const input = event.target as HTMLInputElement;
 		const value = parseFloat(input.value) || 0;
 		discountPercent = Math.max(0, Math.min(100, value));
-		activeButton = null; // Clear active button when custom input is used
-	}
-
-	function applyQuickDiscount(percent: number) {
-		discountPercent = percent;
-		activeButton = percent;
 	}
 
 	// Currency formatter
@@ -67,37 +59,9 @@
 				</div>
 			</div>
 
-			<!-- Quick Discount Buttons -->
+		<!-- Custom Discount Input -->
 			<div>
-				<Label class="block mb-3">Quick Discount</Label>
-				<div class="grid grid-cols-3 gap-2">
-					<Button
-						variant={activeButton === 10 ? 'default' : 'outline'}
-						aria-pressed={activeButton === 10}
-						onclick={() => applyQuickDiscount(10)}
-					>
-						10%
-					</Button>
-					<Button
-						variant={activeButton === 20 ? 'default' : 'outline'}
-						aria-pressed={activeButton === 20}
-						onclick={() => applyQuickDiscount(20)}
-					>
-						20%
-					</Button>
-					<Button
-						variant={activeButton === 30 ? 'default' : 'outline'}
-						aria-pressed={activeButton === 30}
-						onclick={() => applyQuickDiscount(30)}
-					>
-						30%
-					</Button>
-				</div>
-			</div>
-
-			<!-- Custom Discount Input -->
-			<div>
-				<Label for="discount-input" class="block mb-3">Custom Discount</Label>
+				<Label for="discount-input" class="block mb-3">Discount %</Label>
 				<div class="relative">
 					<Input
 						id="discount-input"
