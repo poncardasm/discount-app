@@ -203,7 +203,7 @@
 								<p class="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-2">
 									Final Price
 								</p>
-						<div class="flex items-center justify-center gap-1 min-h-[3rem] sm:min-h-[3.5rem] px-2">
+						<div class="flex items-center justify-center gap-1 min-h-12 sm:min-h-14 px-2">
 							<span class={cn(
 								"text-3xl font-bold tracking-tight tabular-nums break-all text-center",
 								hasInput ? "text-primary" : "text-muted-foreground/30"
