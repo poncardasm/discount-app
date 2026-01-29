@@ -51,7 +51,7 @@
 		<CardContent class="p-6 sm:p-8 space-y-8">
 			<!-- Header Section -->
 			<div class="text-center flex flex-col items-center relative">
-				<h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+				<h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-2 bg-clip-text bg-linear-to-r from-primary to-primary/60">
 					Discount Calculator
 				</h1>
 				<p class="text-sm text-muted-foreground">
@@ -124,17 +124,17 @@
 							<!-- Preset Buttons -->
 							<div class="grid grid-cols-3 gap-3">
 								{#each presetDiscounts as preset}
-									<Button
-										variant={discountPercent === preset ? "default" : "outline"}
-										size="sm"
-										class={cn(
-											"text-xs",
-											discountPercent === preset ? "scale-105 font-bold" : "hover:border-primary/50"
-										)}
-										onclick={() => setDiscount(preset)}
-									>
-										{preset}%
-									</Button>
+								<Button
+									variant={discountPercent === preset ? "default" : "outline"}
+									size="sm"
+									class={cn(
+										"text-base py-4",
+										discountPercent === preset ? "scale-105 font-bold" : "hover:border-primary/50"
+									)}
+									onclick={() => setDiscount(preset)}
+								>
+									{preset}%
+								</Button>
 								{/each}
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 								</p>
 						<div class="flex items-center justify-center gap-1 min-h-[3rem] sm:min-h-[3.5rem] px-2">
 							<span class={cn(
-								"text-2xl sm:text-3xl font-bold tracking-tight tabular-nums break-all text-center",
+								"text-3xl font-bold tracking-tight tabular-nums break-all text-center",
 								hasInput ? "text-primary" : "text-muted-foreground/30"
 							)}>
 								{formatCurrency(discountedPrice)}
