@@ -43,7 +43,7 @@
 			<div>
 				<Label for="price-input" class="block mb-3">Original Price</Label>
 				<div class="relative">
-					<span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
+					<span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-lg">
 						€
 					</span>
 					<Input
@@ -74,7 +74,7 @@
 						oninput={onDiscountChange}
 						class="pr-8 tabular-nums"
 					/>
-					<span class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
+					<span class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-lg">
 						%
 					</span>
 				</div>
