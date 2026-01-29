@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { saveCalculation } from '../utils/storage';
 	import Card from '$lib/components/ui/card.svelte';
 	import CardHeader from '$lib/components/ui/card-header.svelte';
 	import CardTitle from '$lib/components/ui/card-title.svelte';
@@ -8,36 +7,14 @@
 	import Input from '$lib/components/ui/input.svelte';
 	import Label from '$lib/components/ui/label.svelte';
 
-	// Props to allow history integration
-	interface Props {
-		onHistoryUpdate?: () => void;
-	}
-
-	let { onHistoryUpdate }: Props = $props();
-
 	// State management using Svelte 5 runes
 	let price = $state(0);
 	let discountPercent = $state(0);
 	let activeButton = $state<number | null>(null);
-	let lastSavedCalculation = $state<string | null>(null);
 
 	// Derived values (auto-calculated)
 	let discountedPrice = $derived(price - (price * discountPercent) / 100);
 	let savedAmount = $derived((price * discountPercent) / 100);
-
-	// Track if we should save to history
-	$effect(() => {
-		// Only save when both price and discount are meaningful
-		if (price > 0 && discountPercent > 0) {
-			const calculationKey = `${price}-${discountPercent}`;
-			
-			// Avoid saving duplicate consecutive calculations
-			if (calculationKey !== lastSavedCalculation) {
-				saveToHistory();
-				lastSavedCalculation = calculationKey;
-			}
-		}
-	});
 
 	// Event handlers
 	function onPriceChange(event: Event) {
@@ -56,31 +33,6 @@
 	function applyQuickDiscount(percent: number) {
 		discountPercent = percent;
 		activeButton = percent;
-	}
-
-	// Save calculation to history
-	function saveToHistory() {
-		if (price > 0 && discountPercent > 0) {
-			saveCalculation(price, discountPercent, discountedPrice);
-			
-			// Notify parent component to refresh history
-			if (onHistoryUpdate) {
-				onHistoryUpdate();
-			}
-		}
-	}
-
-	// Allow parent to set values (for reapplying from history)
-	export function setCalculation(newPrice: number, newDiscount: number) {
-		price = newPrice;
-		discountPercent = newDiscount;
-		
-		// Update active button if it matches a preset
-		if (newDiscount === 10 || newDiscount === 20 || newDiscount === 30) {
-			activeButton = newDiscount;
-		} else {
-			activeButton = null;
-		}
 	}
 
 	// Currency formatter

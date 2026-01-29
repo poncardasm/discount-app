@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import ThemeToggle from '../components/ThemeToggle.svelte';
 import DiscountCalculator from '../components/DiscountCalculator.svelte';
-import CalculationHistory from '../components/CalculationHistory.svelte';
 ---
 
 <Layout title="Discount Calculator - Calculate Discounts Instantly">
@@ -18,9 +17,8 @@ import CalculationHistory from '../components/CalculationHistory.svelte';
 			</p>
 			
 		<!-- Main Content -->
-		<div class="max-w-2xl mx-auto space-y-8">
+		<div class="max-w-2xl mx-auto">
 			<DiscountCalculator client:load />
-			<CalculationHistory client:load />
 		</div>
 		</div>
 	</main>
