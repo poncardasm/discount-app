@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__svelte__svelte-autofixer",
+      "Bash(npm run dev:*)"
+    ]
+  }
+}

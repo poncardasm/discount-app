@@ -1,18 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ThemeToggle from '../components/ThemeToggle.svelte';
 import DiscountCalculator from '../components/DiscountCalculator.svelte';
 ---
 
 <Layout title="Discount Calculator - Calculate Discounts Instantly">
-	<ThemeToggle client:load />
-	
-	<main class="container mx-auto px-4 py-8 md:py-16">
-		<div class="max-w-6xl mx-auto">
-		<!-- Main Content -->
-		<div class="max-w-2xl mx-auto">
+	<main class="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12">
+		<div class="w-full max-w-lg">
 			<DiscountCalculator client:load />
-		</div>
 		</div>
 	</main>
 </Layout>
