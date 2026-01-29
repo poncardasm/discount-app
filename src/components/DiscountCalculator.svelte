@@ -47,7 +47,7 @@
 </script>
 
 <div class="w-full max-w-5xl mx-auto">
-	<Card class="border-border shadow-lg">
+	<Card class="border-0 shadow-none">
 		<CardContent class="p-6 sm:p-8 space-y-8">
 			<!-- Header Section -->
 			<div class="text-center flex flex-col items-center relative">
