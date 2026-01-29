@@ -85,16 +85,16 @@
 
 	// Currency formatter
 	function formatCurrency(amount: number): string {
-		return new Intl.NumberFormat('en-US', {
+		return new Intl.NumberFormat('de-DE', {
 			style: 'currency',
-			currency: 'USD',
+			currency: 'EUR',
 			minimumFractionDigits: 2,
 			maximumFractionDigits: 2,
 		}).format(amount);
 	}
 </script>
 
-<Card>
+<Card class="mb-8">
 	<CardHeader>
 		<CardTitle>Calculate Your Discount</CardTitle>
 	</CardHeader>
@@ -105,7 +105,7 @@
 				<Label for="price-input">Original Price</Label>
 				<div class="relative">
 					<span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
-						$
+						€
 					</span>
 					<Input
 						id="price-input"
@@ -126,18 +126,21 @@
 				<div class="grid grid-cols-3 gap-2">
 					<Button
 						variant={activeButton === 10 ? 'default' : 'outline'}
+						aria-pressed={activeButton === 10}
 						onclick={() => applyQuickDiscount(10)}
 					>
 						10%
 					</Button>
 					<Button
 						variant={activeButton === 20 ? 'default' : 'outline'}
+						aria-pressed={activeButton === 20}
 						onclick={() => applyQuickDiscount(20)}
 					>
 						20%
 					</Button>
 					<Button
 						variant={activeButton === 30 ? 'default' : 'outline'}
+						aria-pressed={activeButton === 30}
 						onclick={() => applyQuickDiscount(30)}
 					>
 						30%
