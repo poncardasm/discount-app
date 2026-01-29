@@ -110,13 +110,13 @@ discount-app/
 
 **Goal**: Set up the development environment
 
-- [ ] Create new Astro project with minimal template
-- [ ] Install pnpm (if not already installed)
-- [ ] Initialize git repository
-- [ ] Add Svelte integration
-- [ ] Add Tailwind CSS v4 with Vite plugin
-- [ ] Configure TypeScript
-- [ ] Create project structure (folders)
+- [x] Create new Astro project with minimal template
+- [x] Install pnpm (if not already installed)
+- [x] Initialize git repository
+- [x] Add Svelte integration
+- [x] Add Tailwind CSS v4 with Vite plugin
+- [x] Configure TypeScript
+- [x] Create project structure (folders)
 
 **Commands**:
 
