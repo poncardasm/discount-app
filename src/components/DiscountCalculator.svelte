@@ -87,8 +87,7 @@
 					<!-- Discount Input -->
 					<div>
 						<div class="flex justify-between items-baseline mb-2">
-							<Label for="discount-input" class="text-sm font-medium">Discount</Label>
-							<span class="text-sm font-bold text-primary tabular-nums">{Math.round(discountPercent)}%</span>
+							<Label for="discount-input" class="text-sm font-medium">Discount %</Label>
 						</div>
 						
 						<div class="space-y-4">
