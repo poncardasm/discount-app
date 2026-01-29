@@ -1,1 +1,83 @@
 @import 'tailwindcss';
+
+/* Custom CSS Variables for consistent theming */
+@layer base {
+	:root {
+		/* Light Mode Colors */
+		--color-bg-primary: 255 255 255; /* #ffffff */
+		--color-bg-secondary: 249 250 251; /* #f9fafb */
+		--color-text-primary: 17 24 39; /* #111827 */
+		--color-text-secondary: 107 114 128; /* #6b7280 */
+		--color-primary: 59 130 246; /* #3b82f6 */
+		--color-success: 16 185 129; /* #10b981 */
+		--color-border: 229 231 235; /* #e5e7eb */
+	}
+
+	.dark {
+		/* Dark Mode Colors */
+		--color-bg-primary: 15 23 42; /* #0f172a */
+		--color-bg-secondary: 30 41 59; /* #1e293b */
+		--color-text-primary: 241 245 249; /* #f1f5f9 */
+		--color-text-secondary: 148 163 184; /* #94a3b8 */
+		--color-primary: 96 165 250; /* #60a5fa */
+		--color-success: 52 211 153; /* #34d399 */
+		--color-border: 51 65 85; /* #334155 */
+	}
+
+	/* Typography defaults */
+	body {
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+			Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	/* Better focus indicators for accessibility */
+	*:focus-visible {
+		outline: 2px solid rgb(var(--color-primary));
+		outline-offset: 2px;
+	}
+
+	/* Smooth scrolling */
+	html {
+		scroll-behavior: smooth;
+	}
+
+	/* Remove number input spinners for cleaner look */
+	input[type='number']::-webkit-inner-spin-button,
+	input[type='number']::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type='number'] {
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
+}
+
+/* Custom utility classes */
+@layer utilities {
+	/* Tabular numbers for better alignment in calculations */
+	.tabular-nums {
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* Glass morphism effect for cards */
+	.glass {
+		background: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+	}
+
+	.dark .glass {
+		background: rgba(30, 41, 59, 0.8);
+	}
+
+	/* Smooth color transitions */
+	.transition-colors-smooth {
+		transition-property: color, background-color, border-color;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 200ms;
+	}
+}

@@ -114,7 +114,7 @@
 				placeholder="100.00"
 				value={price || ''}
 				oninput={onPriceChange}
-				class="w-full h-12 pl-10 pr-4 text-lg bg-zinc-50 dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 text-zinc-900 dark:text-zinc-100 transition-colors"
+				class="w-full h-12 pl-10 pr-4 text-lg bg-zinc-50 dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 text-zinc-900 dark:text-zinc-100 transition-colors tabular-nums"
 			/>
 		</div>
 	</div>
@@ -173,7 +173,7 @@
 				placeholder="0"
 				value={discountPercent || ''}
 				oninput={onDiscountChange}
-				class="w-full h-12 pl-4 pr-12 text-lg bg-zinc-50 dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 text-zinc-900 dark:text-zinc-100 transition-colors"
+				class="w-full h-12 pl-4 pr-12 text-lg bg-zinc-50 dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 text-zinc-900 dark:text-zinc-100 transition-colors tabular-nums"
 			/>
 			<span
 				class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400 text-lg font-semibold"
@@ -186,7 +186,7 @@
 	<!-- Results Display -->
 	{#if price > 0 && discountPercent > 0}
 		<div
-			class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors"
+			class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors animate-in fade-in duration-300"
 		>
 			<div class="space-y-4">
 				<!-- Final Price -->
@@ -194,7 +194,7 @@
 					<p class="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-1">
 						Final Price
 					</p>
-					<p class="text-4xl font-bold text-blue-600 dark:text-blue-400">
+					<p class="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400 tabular-nums">
 						{formatCurrency(discountedPrice)}
 					</p>
 				</div>
@@ -208,7 +208,7 @@
 						<p class="text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1">
 							You Save
 						</p>
-						<p class="text-xl font-bold text-green-600 dark:text-green-400">
+						<p class="text-lg sm:text-xl font-bold text-green-600 dark:text-green-400 tabular-nums">
 							{formatCurrency(savedAmount)}
 						</p>
 					</div>
@@ -216,7 +216,7 @@
 						<p class="text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1">
 							Discount
 						</p>
-						<p class="text-xl font-bold text-purple-600 dark:text-purple-400">
+						<p class="text-lg sm:text-xl font-bold text-purple-600 dark:text-purple-400 tabular-nums">
 							{discountPercent.toFixed(1)}%
 						</p>
 					</div>

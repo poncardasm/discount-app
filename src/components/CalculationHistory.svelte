@@ -126,16 +126,16 @@
 					onclick={() => handleReapply(entry)}
 					class="w-full p-4 bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl transition-all duration-200 text-left group border border-transparent hover:border-blue-200 dark:hover:border-blue-800"
 				>
-					<div class="flex items-center justify-between mb-2">
-						<div class="flex items-center gap-3 flex-1 min-w-0">
+					<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+						<div class="flex items-center gap-2 sm:gap-3 flex-1 min-w-0 flex-wrap">
 							<!-- Original Price -->
-							<span class="text-zinc-700 dark:text-zinc-300 font-medium">
+							<span class="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 font-medium tabular-nums">
 								{formatCurrency(entry.originalPrice)}
 							</span>
 
 							<!-- Arrow -->
 							<svg
-								class="w-4 h-4 text-zinc-400 dark:text-zinc-600 flex-shrink-0"
+								class="w-3 h-3 sm:w-4 sm:h-4 text-zinc-400 dark:text-zinc-600 flex-shrink-0"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -149,20 +149,20 @@
 							</svg>
 
 							<!-- Final Price -->
-							<span class="text-blue-600 dark:text-blue-400 font-bold">
+							<span class="text-sm sm:text-base text-blue-600 dark:text-blue-400 font-bold tabular-nums">
 								{formatCurrency(entry.finalPrice)}
 							</span>
 
 							<!-- Discount Badge -->
 							<span
-								class="px-2 py-1 text-xs font-semibold bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 rounded-full"
+								class="px-2 py-1 text-xs font-semibold bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 rounded-full whitespace-nowrap"
 							>
 								{entry.discountPercent}% off
 							</span>
 						</div>
 
 						<!-- Timestamp -->
-						<span class="text-xs text-zinc-500 dark:text-zinc-500 ml-2">
+						<span class="text-xs text-zinc-500 dark:text-zinc-500 whitespace-nowrap">
 							{formatTimestamp(entry.timestamp)}
 						</span>
 					</div>
