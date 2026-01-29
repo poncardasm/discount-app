@@ -17,11 +17,11 @@ import CalculationHistory from '../components/CalculationHistory.svelte';
 				Calculate discounts quickly and easily with our interactive calculator
 			</p>
 			
-			<!-- Main Content Grid -->
-			<div class="grid gap-8 md:grid-cols-2">
-				<DiscountCalculator client:load />
-				<CalculationHistory client:load />
-			</div>
+		<!-- Main Content -->
+		<div class="max-w-2xl mx-auto space-y-8">
+			<DiscountCalculator client:load />
+			<CalculationHistory client:load />
+		</div>
 		</div>
 	</main>
 </Layout>
