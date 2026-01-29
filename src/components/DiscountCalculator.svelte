@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Card from '$lib/components/ui/card.svelte';
-	import CardHeader from '$lib/components/ui/card-header.svelte';
-	import CardTitle from '$lib/components/ui/card-title.svelte';
 	import CardContent from '$lib/components/ui/card-content.svelte';
 	import Button from '$lib/components/ui/button.svelte';
 	import Input from '$lib/components/ui/input.svelte';
@@ -47,14 +45,11 @@
 </script>
 
 <Card class="mb-8">
-	<CardHeader>
-		<CardTitle>Calculate Your Discount</CardTitle>
-	</CardHeader>
-	<CardContent>
+	<CardContent class="pt-6">
 		<!-- Price Input Section -->
 		<div class="space-y-5">
-			<div class="space-y-2">
-				<Label for="price-input">Original Price</Label>
+			<div>
+				<Label for="price-input" class="block mb-3">Original Price</Label>
 				<div class="relative">
 					<span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
 						€
@@ -73,8 +68,8 @@
 			</div>
 
 			<!-- Quick Discount Buttons -->
-			<div class="space-y-2">
-				<Label>Quick Discount</Label>
+			<div>
+				<Label class="block mb-3">Quick Discount</Label>
 				<div class="grid grid-cols-3 gap-2">
 					<Button
 						variant={activeButton === 10 ? 'default' : 'outline'}
@@ -101,8 +96,8 @@
 			</div>
 
 			<!-- Custom Discount Input -->
-			<div class="space-y-2">
-				<Label for="discount-input">Custom Discount</Label>
+			<div>
+				<Label for="discount-input" class="block mb-3">Custom Discount</Label>
 				<div class="relative">
 					<Input
 						id="discount-input"
