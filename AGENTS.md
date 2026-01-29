@@ -100,7 +100,8 @@ import Button from '$lib/components/ui/button.svelte';
 - **Runes**: Use Svelte 5 runes (`$state`, `$derived`, `$props`, `$bindable`, `$effect`)
 - **Props Interface**: Define props interface for type safety
 - **Module Script**: Use `<script lang="ts" module>` for exports like types and variants
-- **Event Handlers**: Use inline event handlers with `on:` prefix (e.g., `oninput`, `onclick`)
+- **Event Handlers**: Use inline event handlers with `on:` prefix (e.g., `oninput`, `onclick`, `onkeydown`)
+- **Keyboard Events**: Use `KeyboardEvent` type for keyboard event handlers like `onkeydown`
 
 Example:
 ```svelte
@@ -112,6 +113,7 @@ Example:
     class?: string;
     value?: string | number;
     oninput?: (event: Event) => void;
+    onkeydown?: (event: KeyboardEvent) => void;
   }
   
   let {
@@ -119,6 +121,7 @@ Example:
     class: className,
     value,
     oninput,
+    onkeydown,
     ...restProps
   }: Props = $props();
 </script>
@@ -127,6 +130,7 @@ Example:
   {id}
   {value}
   {oninput}
+  {onkeydown}
   class={cn('base-classes', className)}
   {...restProps}
 />
