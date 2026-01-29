@@ -1,5 +1,12 @@
 <script lang="ts">
 	import { saveCalculation } from '../utils/storage';
+	import Card from '$lib/components/ui/card.svelte';
+	import CardHeader from '$lib/components/ui/card-header.svelte';
+	import CardTitle from '$lib/components/ui/card-title.svelte';
+	import CardContent from '$lib/components/ui/card-content.svelte';
+	import Button from '$lib/components/ui/button.svelte';
+	import Input from '$lib/components/ui/input.svelte';
+	import Label from '$lib/components/ui/label.svelte';
 
 	// Props to allow history integration
 	interface Props {
@@ -87,152 +94,122 @@
 	}
 </script>
 
-<div class="bg-white dark:bg-zinc-800 rounded-2xl shadow-xl p-8 transition-colors">
-	<h2 class="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-6">
-		Calculate Your Discount
-	</h2>
-
-	<!-- Price Input Section -->
-	<div class="mb-6">
-		<label
-			for="price-input"
-			class="block text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-2"
-		>
-			Enter Original Price
-		</label>
-		<div class="relative">
-			<span
-				class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400 text-lg font-semibold"
-			>
-				$
-			</span>
-			<input
-				id="price-input"
-				type="number"
-				min="0"
-				step="0.01"
-				placeholder="100.00"
-				value={price || ''}
-				oninput={onPriceChange}
-				class="w-full h-12 pl-10 pr-4 text-lg bg-zinc-50 dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 text-zinc-900 dark:text-zinc-100 transition-colors tabular-nums"
-			/>
-		</div>
-	</div>
-
-	<!-- Quick Discount Buttons -->
-	<div class="mb-6">
-		<div class="block text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-2">
-			Quick Discount
-		</div>
-		<div class="grid grid-cols-3 gap-3">
-			<button
-				onclick={() => applyQuickDiscount(10)}
-				class="h-14 font-semibold text-lg rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 {activeButton ===
-				10
-					? 'bg-blue-600 text-white shadow-lg'
-					: 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700'}"
-			>
-				10%
-			</button>
-			<button
-				onclick={() => applyQuickDiscount(20)}
-				class="h-14 font-semibold text-lg rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 {activeButton ===
-				20
-					? 'bg-purple-600 text-white shadow-lg'
-					: 'bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700'}"
-			>
-				20%
-			</button>
-			<button
-				onclick={() => applyQuickDiscount(30)}
-				class="h-14 font-semibold text-lg rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 {activeButton ===
-				30
-					? 'bg-pink-600 text-white shadow-lg'
-					: 'bg-gradient-to-r from-pink-500 to-pink-600 text-white hover:from-pink-600 hover:to-pink-700'}"
-			>
-				30%
-			</button>
-		</div>
-	</div>
-
-	<!-- Custom Discount Input -->
-	<div class="mb-6">
-		<label
-			for="discount-input"
-			class="block text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-2"
-		>
-			Custom Discount
-		</label>
-		<div class="relative">
-			<input
-				id="discount-input"
-				type="number"
-				min="0"
-				max="100"
-				step="0.1"
-				placeholder="0"
-				value={discountPercent || ''}
-				oninput={onDiscountChange}
-				class="w-full h-12 pl-4 pr-12 text-lg bg-zinc-50 dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 text-zinc-900 dark:text-zinc-100 transition-colors tabular-nums"
-			/>
-			<span
-				class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400 text-lg font-semibold"
-			>
-				%
-			</span>
-		</div>
-	</div>
-
-	<!-- Results Display -->
-	{#if price > 0 && discountPercent > 0}
-		<div
-			class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors animate-in fade-in duration-300"
-		>
-			<div class="space-y-4">
-				<!-- Final Price -->
-				<div class="text-center">
-					<p class="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-1">
-						Final Price
-					</p>
-					<p class="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400 tabular-nums">
-						{formatCurrency(discountedPrice)}
-					</p>
-				</div>
-
-				<!-- Divider -->
-				<div class="border-t border-blue-200 dark:border-blue-800"></div>
-
-				<!-- Savings Information -->
-				<div class="grid grid-cols-2 gap-4 text-center">
-					<div>
-						<p class="text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1">
-							You Save
-						</p>
-						<p class="text-lg sm:text-xl font-bold text-green-600 dark:text-green-400 tabular-nums">
-							{formatCurrency(savedAmount)}
-						</p>
-					</div>
-					<div>
-						<p class="text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1">
-							Discount
-						</p>
-						<p class="text-lg sm:text-xl font-bold text-purple-600 dark:text-purple-400 tabular-nums">
-							{discountPercent.toFixed(1)}%
-						</p>
-					</div>
+<Card>
+	<CardHeader>
+		<CardTitle>Calculate Your Discount</CardTitle>
+	</CardHeader>
+	<CardContent>
+		<!-- Price Input Section -->
+		<div class="space-y-5">
+			<div class="space-y-2">
+				<Label for="price-input">Original Price</Label>
+				<div class="relative">
+					<span class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
+						$
+					</span>
+					<Input
+						id="price-input"
+						type="number"
+						min="0"
+						step="0.01"
+						placeholder="100.00"
+						value={price || ''}
+						oninput={onPriceChange}
+						class="pl-7 tabular-nums"
+					/>
 				</div>
 			</div>
-		</div>
-	{/if}
 
-	<!-- Empty State Message -->
-	{#if price === 0 || discountPercent === 0}
-		<div class="mt-8 p-6 bg-zinc-50 dark:bg-zinc-900 rounded-xl text-center transition-colors">
-			<p class="text-zinc-500 dark:text-zinc-400 text-sm">
-				{price === 0
-					? 'Enter a price to start calculating'
-					: 'Select or enter a discount percentage'}
-			</p>
+			<!-- Quick Discount Buttons -->
+			<div class="space-y-2">
+				<Label>Quick Discount</Label>
+				<div class="grid grid-cols-3 gap-2">
+					<Button
+						variant={activeButton === 10 ? 'default' : 'outline'}
+						onclick={() => applyQuickDiscount(10)}
+					>
+						10%
+					</Button>
+					<Button
+						variant={activeButton === 20 ? 'default' : 'outline'}
+						onclick={() => applyQuickDiscount(20)}
+					>
+						20%
+					</Button>
+					<Button
+						variant={activeButton === 30 ? 'default' : 'outline'}
+						onclick={() => applyQuickDiscount(30)}
+					>
+						30%
+					</Button>
+				</div>
+			</div>
+
+			<!-- Custom Discount Input -->
+			<div class="space-y-2">
+				<Label for="discount-input">Custom Discount</Label>
+				<div class="relative">
+					<Input
+						id="discount-input"
+						type="number"
+						min="0"
+						max="100"
+						step="0.1"
+						placeholder="0"
+						value={discountPercent || ''}
+						oninput={onDiscountChange}
+						class="pr-8 tabular-nums"
+					/>
+					<span class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
+						%
+					</span>
+				</div>
+			</div>
+
+			<!-- Results Display -->
+			{#if price > 0 && discountPercent > 0}
+				<div class="rounded-lg border bg-muted p-5 mt-6">
+					<div class="space-y-4">
+						<!-- Final Price -->
+						<div class="text-center">
+							<p class="text-xs text-muted-foreground mb-1">Final Price</p>
+							<p class="text-3xl font-bold tracking-tight tabular-nums">
+								{formatCurrency(discountedPrice)}
+							</p>
+						</div>
+
+						<!-- Divider -->
+						<div class="border-t"></div>
+
+						<!-- Savings Information -->
+						<div class="grid grid-cols-2 gap-4 text-center">
+							<div>
+								<p class="text-xs text-muted-foreground mb-1">You Save</p>
+								<p class="text-base font-semibold tabular-nums">
+									{formatCurrency(savedAmount)}
+								</p>
+							</div>
+							<div>
+								<p class="text-xs text-muted-foreground mb-1">Discount</p>
+								<p class="text-base font-semibold tabular-nums">
+									{discountPercent.toFixed(1)}%
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			{/if}
+
+			<!-- Empty State Message -->
+			{#if price === 0 || discountPercent === 0}
+				<div class="rounded-lg border bg-muted p-5 mt-6 text-center">
+					<p class="text-sm text-muted-foreground">
+						{price === 0
+							? 'Enter a price to start calculating'
+							: 'Select or enter a discount percentage'}
+					</p>
+				</div>
+			{/if}
 		</div>
-	{/if}
-</div>
+	</CardContent>
+</Card>

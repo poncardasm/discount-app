@@ -1,49 +1,74 @@
 @import 'tailwindcss';
 
-/* Custom CSS Variables for consistent theming */
 @layer base {
 	:root {
-		/* Light Mode Colors */
-		--color-bg-primary: 255 255 255; /* #ffffff */
-		--color-bg-secondary: 249 250 251; /* #f9fafb */
-		--color-text-primary: 17 24 39; /* #111827 */
-		--color-text-secondary: 107 114 128; /* #6b7280 */
-		--color-primary: 59 130 246; /* #3b82f6 */
-		--color-success: 16 185 129; /* #10b981 */
-		--color-border: 229 231 235; /* #e5e7eb */
+		--radius: 0.625rem;
+		--background: oklch(1 0 0);
+		--foreground: oklch(0.129 0.042 264.695);
+		--card: oklch(1 0 0);
+		--card-foreground: oklch(0.129 0.042 264.695);
+		--popover: oklch(1 0 0);
+		--popover-foreground: oklch(0.129 0.042 264.695);
+		--primary: oklch(0.208 0.042 265.755);
+		--primary-foreground: oklch(0.984 0.003 247.858);
+		--secondary: oklch(0.968 0.007 247.896);
+		--secondary-foreground: oklch(0.208 0.042 265.755);
+		--muted: oklch(0.968 0.007 247.896);
+		--muted-foreground: oklch(0.554 0.046 257.417);
+		--accent: oklch(0.968 0.007 247.896);
+		--accent-foreground: oklch(0.208 0.042 265.755);
+		--destructive: oklch(0.577 0.245 27.325);
+		--destructive-foreground: oklch(0.984 0.003 247.858);
+		--border: oklch(0.929 0.013 255.508);
+		--input: oklch(0.929 0.013 255.508);
+		--ring: oklch(0.704 0.04 256.788);
+		--chart-1: oklch(0.646 0.222 41.116);
+		--chart-2: oklch(0.6 0.118 184.704);
+		--chart-3: oklch(0.398 0.07 227.392);
+		--chart-4: oklch(0.828 0.189 84.429);
+		--chart-5: oklch(0.769 0.188 70.08);
 	}
 
 	.dark {
-		/* Dark Mode Colors */
-		--color-bg-primary: 15 23 42; /* #0f172a */
-		--color-bg-secondary: 30 41 59; /* #1e293b */
-		--color-text-primary: 241 245 249; /* #f1f5f9 */
-		--color-text-secondary: 148 163 184; /* #94a3b8 */
-		--color-primary: 96 165 250; /* #60a5fa */
-		--color-success: 52 211 153; /* #34d399 */
-		--color-border: 51 65 85; /* #334155 */
+		--background: oklch(0.129 0.042 264.695);
+		--foreground: oklch(0.984 0.003 247.858);
+		--card: oklch(0.208 0.042 265.755);
+		--card-foreground: oklch(0.984 0.003 247.858);
+		--popover: oklch(0.208 0.042 265.755);
+		--popover-foreground: oklch(0.984 0.003 247.858);
+		--primary: oklch(0.929 0.013 255.508);
+		--primary-foreground: oklch(0.208 0.042 265.755);
+		--secondary: oklch(0.279 0.041 260.031);
+		--secondary-foreground: oklch(0.984 0.003 247.858);
+		--muted: oklch(0.279 0.041 260.031);
+		--muted-foreground: oklch(0.704 0.04 256.788);
+		--accent: oklch(0.279 0.041 260.031);
+		--accent-foreground: oklch(0.984 0.003 247.858);
+		--destructive: oklch(0.704 0.191 22.216);
+		--destructive-foreground: oklch(0.984 0.003 247.858);
+		--border: oklch(1 0 0 / 10%);
+		--input: oklch(1 0 0 / 15%);
+		--ring: oklch(0.551 0.027 264.364);
+		--chart-1: oklch(0.488 0.243 264.376);
+		--chart-2: oklch(0.696 0.17 162.48);
+		--chart-3: oklch(0.769 0.188 70.08);
+		--chart-4: oklch(0.627 0.265 303.9);
+		--chart-5: oklch(0.645 0.246 16.439);
 	}
 
-	/* Typography defaults */
 	body {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-			Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+		background-color: var(--background);
+		color: var(--foreground);
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
 
-	/* Better focus indicators for accessibility */
-	*:focus-visible {
-		outline: 2px solid rgb(var(--color-primary));
-		outline-offset: 2px;
-	}
-
-	/* Smooth scrolling */
 	html {
 		scroll-behavior: smooth;
 	}
 
-	/* Remove number input spinners for cleaner look */
+	/* Remove number input spinners */
 	input[type='number']::-webkit-inner-spin-button,
 	input[type='number']::-webkit-outer-spin-button {
 		-webkit-appearance: none;
@@ -56,28 +81,8 @@
 	}
 }
 
-/* Custom utility classes */
 @layer utilities {
-	/* Tabular numbers for better alignment in calculations */
 	.tabular-nums {
 		font-variant-numeric: tabular-nums;
-	}
-
-	/* Glass morphism effect for cards */
-	.glass {
-		background: rgba(255, 255, 255, 0.8);
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
-	}
-
-	.dark .glass {
-		background: rgba(30, 41, 59, 0.8);
-	}
-
-	/* Smooth color transitions */
-	.transition-colors-smooth {
-		transition-property: color, background-color, border-color;
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-		transition-duration: 200ms;
 	}
 }

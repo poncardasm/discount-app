@@ -17,6 +17,9 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6"
+    "@astrojs/check": "^0.9.6",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.0",
+    "tailwind-variants": "^3.2.2"
   }
 }

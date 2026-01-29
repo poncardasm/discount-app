@@ -49,7 +49,7 @@
 <button
 	onclick={toggleTheme}
 	aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-	class="fixed top-4 right-4 p-3 rounded-full bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 z-50"
+	class="fixed top-4 right-4 p-2.5 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-all duration-200 shadow-sm z-50"
 	class:opacity-0={!mounted}
 	class:opacity-100={mounted}
 >
@@ -65,7 +65,7 @@
 			stroke-width="2"
 			stroke-linecap="round"
 			stroke-linejoin="round"
-			class="text-yellow-400"
+			class="text-foreground"
 		>
 			<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
 		</svg>
@@ -81,7 +81,7 @@
 			stroke-width="2"
 			stroke-linecap="round"
 			stroke-linejoin="round"
-			class="text-yellow-500"
+			class="text-foreground"
 		>
 			<circle cx="12" cy="12" r="4"></circle>
 			<path d="M12 2v2"></path>
