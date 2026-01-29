@@ -16,6 +16,8 @@
 	let discountedPrice = $derived(price - (price * discountPercent) / 100);
 	let savedAmount = $derived((price * discountPercent) / 100);
 	let hasInput = $derived(price > 0 || discountPercent > 0);
+	// Use single column layout when saved amount exceeds 1k to prevent overlap
+	let useSingleColumn = $derived(savedAmount >= 1000);
 
 	// Event handlers
 	function onPriceChange(event: Event) {
@@ -33,6 +35,54 @@
 	
 	function setDiscount(value: number) {
 		discountPercent = Math.max(0, Math.min(100, value));
+	}
+
+	// Prevent non-numeric input
+	function preventNonNumeric(event: KeyboardEvent) {
+		const key = event.key;
+		const allowedKeys = ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+		
+		// Allow: Ctrl/Cmd+A, Ctrl/Cmd+C, Ctrl/Cmd+V, Ctrl/Cmd+X
+		if ((event.ctrlKey || event.metaKey) && ['a', 'c', 'v', 'x'].includes(key.toLowerCase())) {
+			return;
+		}
+		
+		// Allow navigation keys
+		if (allowedKeys.includes(key)) {
+			return;
+		}
+		
+		// Allow decimal point (only one)
+		const input = event.target as HTMLInputElement;
+		if (key === '.' && !input.value.includes('.')) {
+			return;
+		}
+		
+		// Allow numbers 0-9
+		if (!/^[0-9]$/.test(key)) {
+			event.preventDefault();
+		}
+	}
+
+	// Prevent non-numeric input for discount (no decimal)
+	function preventNonNumericInteger(event: KeyboardEvent) {
+		const key = event.key;
+		const allowedKeys = ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+		
+		// Allow: Ctrl/Cmd+A, Ctrl/Cmd+C, Ctrl/Cmd+V, Ctrl/Cmd+X
+		if ((event.ctrlKey || event.metaKey) && ['a', 'c', 'v', 'x'].includes(key.toLowerCase())) {
+			return;
+		}
+		
+		// Allow navigation keys
+		if (allowedKeys.includes(key)) {
+			return;
+		}
+		
+		// Allow numbers 0-9 only
+		if (!/^[0-9]$/.test(key)) {
+			event.preventDefault();
+		}
 	}
 
 	// Currency formatter
@@ -79,6 +129,7 @@
 								placeholder="0.00"
 								value={price || ''}
 								oninput={onPriceChange}
+								onkeydown={preventNonNumeric}
 								class="pl-8 h-12 tabular-nums text-lg font-medium border-input focus-visible:ring-primary"
 							/>
 						</div>
@@ -101,6 +152,7 @@
 									placeholder="0"
 									value={discountPercent || ''}
 									oninput={onDiscountChange}
+									onkeydown={preventNonNumericInteger}
 									class="pr-8 h-12 tabular-nums text-lg font-medium border-input focus-visible:ring-primary"
 								/>
 								<span class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-base font-medium group-focus-within:text-primary">
@@ -161,8 +213,11 @@
 						</div>
 							</div>
 							
-							<div class="grid grid-cols-2 gap-4 pt-4 border-t border-border/50">
-								<div>
+							<div class={cn(
+								"grid gap-4 pt-4 border-t border-border/50",
+								useSingleColumn ? "grid-cols-1" : "grid-cols-2"
+							)}>
+								<div class={useSingleColumn ? "text-left" : ""}>
 									<p class="text-xs uppercase tracking-wide font-semibold text-muted-foreground mb-1">
 										You Save
 									</p>
@@ -173,7 +228,7 @@
 										{formatCurrency(savedAmount)}
 									</p>
 								</div>
-								<div>
+								<div class={useSingleColumn ? "text-left" : ""}>
 									<p class="text-xs uppercase tracking-wide font-semibold text-muted-foreground mb-1">
 										Off
 									</p>
